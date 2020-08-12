@@ -1,2 +1,3 @@
-# erel
-Express-route-exit-logger (EREL) is a middleware package to log info, when route execution is finished
+# EREL
+
+Express-route-exit-logger(EREL) is a middleware package to log info, when express route execution is finished

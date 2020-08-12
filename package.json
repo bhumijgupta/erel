@@ -1,0 +1,30 @@
+{
+  "name": "erel",
+  "version": "0.0.1",
+  "description": "Express-route-exit-logger (EREL) is a middleware package to log info, when route execution is finished",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhumijgupta/erel.git"
+  },
+  "author": "Bhumij Gupta <bhumijgupta@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bhumijgupta/erel/issues"
+  },
+  "homepage": "https://github.com/bhumijgupta/erel#readme"
+}
