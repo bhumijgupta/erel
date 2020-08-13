@@ -2,7 +2,7 @@
   "name": "erel",
   "version": "0.0.1",
   "description": "Express-route-exit-logger (EREL) is a middleware package to log info, when route execution is finished",
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
     "/lib"
   ],
@@ -21,6 +21,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "build": "tsc",
+    "build:watch": "tsc --watch",
     "prepare": "npm run build"
   },
   "repository": {

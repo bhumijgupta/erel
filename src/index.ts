@@ -18,11 +18,7 @@ class exitLogger {
   };
   private getIP = (req: Request) => {
     return (
-      this.getXForwardedIP(req) ||
-      req.ip ||
-      (req.connection && req.connection.remoteAddress) ||
-      (req.socket && req.socket.remoteAddress) ||
-      undefined
+      this.getXForwardedIP(req) || req.ip || req.socket?.remoteAddress || req.connection?.remoteAddress || undefined
     );
   };
   middleware = (req: Request, res: Response, next: NextFunction) => {
@@ -51,4 +47,4 @@ class exitLogger {
   };
 }
 
-export default exitLogger;
+module.exports = exitLogger;
