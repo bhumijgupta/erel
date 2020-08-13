@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Express-route-exit-logger (EREL) is a middleware package to log info, when route execution is finished",
   "main": "index.js",
+  "files": [
+    "/lib"
+  ],
   "dependencies": {
     "express": "^4.17.1"
   },
