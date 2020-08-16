@@ -1,13 +1,40 @@
 import { Request, Response, NextFunction } from 'express';
-import { defaultLogger } from './defaults';
-import { loggerInterface, dataInterface } from './types';
 
-class exitLogger {
-  private logger: loggerInterface;
+type exitData = {
+  rawEnterDate: Date;
+  rawExitDate: Date;
+  timestamp: String;
+  statusCode: Number;
+  route: string;
+  ip: string | undefined;
+  responseTime: Number;
+  method: String;
+};
+
+interface IMiddleware {
+  (req: Request, res: Response, next: NextFunction): void;
+}
+
+interface ILogger {
+  (data: exitData, req: Request, res: Response): void;
+}
+
+interface IExitLogger {
+  setLogger: (loggerFunction: ILogger) => void;
+  middleware: IMiddleware;
+}
+
+class exitLogger implements IExitLogger {
+  private logger: ILogger;
   constructor() {
-    this.logger = defaultLogger;
+    this.logger = this.defaultLogger;
     this.middleware = this.middleware.bind(this);
   }
+  private defaultLogger: ILogger = (data, req, res) => {
+    console.log(
+      `${data.timestamp} - ${data.ip} - ${data.method} - ${data.route} - ${data.statusCode} - ${data.responseTime}`,
+    );
+  };
   private getXForwardedIP = (req: Request) => {
     const xForwardedHeader = req.headers['x-forwarded-for'];
     if (xForwardedHeader === undefined) return undefined;
@@ -21,7 +48,12 @@ class exitLogger {
       this.getXForwardedIP(req) || req.ip || req.socket?.remoteAddress || req.connection?.remoteAddress || undefined
     );
   };
-  middleware = (req: Request, res: Response, next: NextFunction) => {
+
+  setLogger = (loggerFunction: ILogger) => {
+    this.logger = loggerFunction;
+  };
+
+  middleware: IMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const enterDate = new Date();
     const IP = this.getIP(req);
     const route = req.url;
@@ -31,7 +63,7 @@ class exitLogger {
       const exitDate = new Date();
       const responseTime = exitDate.getTime() - enterDate.getTime();
       const statusCode = res.statusCode;
-      const log: dataInterface = {
+      const log: exitData = {
         rawEnterDate: enterDate,
         rawExitDate: exitDate,
         responseTime,
@@ -47,4 +79,6 @@ class exitLogger {
   };
 }
 
-module.exports = exitLogger;
+let exitLogInstance = new exitLogger();
+export const exitLog = exitLogInstance;
+export default exitLogInstance;
