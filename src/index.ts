@@ -15,22 +15,20 @@ interface IMiddleware {
   (req: Request, res: Response, next: NextFunction): void;
 }
 
-interface ILogger {
-  (data: exitData, req: Request, res: Response): void;
-}
+export type LoggerCallback = (data: exitData, req?: Request, res?: Response) => void;
 
 interface IExitLogger {
-  setLogger: (loggerFunction: ILogger) => void;
+  setLogger: (loggerFunction: LoggerCallback) => void;
   middleware: IMiddleware;
 }
 
 class exitLogger implements IExitLogger {
-  private logger: ILogger;
+  private logger: LoggerCallback;
   constructor() {
     this.logger = this.defaultLogger;
     this.middleware = this.middleware.bind(this);
   }
-  private defaultLogger: ILogger = (data, req, res) => {
+  private defaultLogger: LoggerCallback = (data, req, res) => {
     console.log(
       `${data.timestamp} - ${data.ip} - ${data.method} - ${data.route} - ${data.statusCode} - ${data.responseTime}`,
     );
@@ -49,7 +47,7 @@ class exitLogger implements IExitLogger {
     );
   };
 
-  setLogger = (loggerFunction: ILogger) => {
+  setLogger = (loggerFunction: LoggerCallback) => {
     this.logger = loggerFunction;
   };
 
