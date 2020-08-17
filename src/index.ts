@@ -3,17 +3,15 @@ import { Request, Response, NextFunction } from 'express';
 type exitData = {
   rawEnterDate: Date;
   rawExitDate: Date;
-  timestamp: String;
-  statusCode: Number;
+  timestamp: string;
+  statusCode: number;
   route: string;
   ip: string | undefined;
-  responseTime: Number;
-  method: String;
+  responseTime: number;
+  method: string;
 };
 
-interface IMiddleware {
-  (req: Request, res: Response, next: NextFunction): void;
-}
+type IMiddleware = (req: Request, res: Response, next: NextFunction) => void;
 
 export type LoggerCallback = (data: exitData, req?: Request, res?: Response) => void;
 
@@ -22,7 +20,7 @@ interface IExitLogger {
   middleware: IMiddleware;
 }
 
-class exitLogger implements IExitLogger {
+class ExitLogger implements IExitLogger {
   private logger: LoggerCallback;
   constructor() {
     this.logger = this.defaultLogger;
@@ -33,11 +31,11 @@ class exitLogger implements IExitLogger {
       `${data.timestamp} - ${data.ip} - ${data.method} - ${data.route} - ${data.statusCode} - ${data.responseTime}`,
     );
   };
-  private getXForwardedIP = (req: Request) => {
+  private readonly getXForwardedIP = (req: Request) => {
     const xForwardedHeader = req.headers['x-forwarded-for'];
     if (xForwardedHeader === undefined) return undefined;
     else if (typeof xForwardedHeader === 'string') {
-      let forwardedIP = xForwardedHeader.split(',').pop();
+      const forwardedIP = xForwardedHeader.split(',').pop();
       return forwardedIP;
     } else return undefined;
   };
@@ -77,6 +75,6 @@ class exitLogger implements IExitLogger {
   };
 }
 
-let exitLogInstance = new exitLogger();
+const exitLogInstance = new ExitLogger();
 export const exitLog = exitLogInstance;
 export default exitLogInstance;
