@@ -1,6 +1,7 @@
-# EREL
-
-> Express-route-exit-log (EREL) is an customisable express middleware package to log useful request insights when route execution finishes
+<div align="center"> 
+<h1>EREL</h1>
+Express-route-exit-log (EREL) is a customisable express middleware package to log useful request insights when route execution finishes.
+</div>
 
 #### Features
 
@@ -9,13 +10,7 @@
 - Supports both CJS and ESM modules
 - Small package and easy to set up
 - Support for custom logging solution
-- Provides route insights like:-
-  - Request IP Address
-  - Response status code
-  - Request execution start time
-  - Request execution end time
-  - Request access method
-  - Route execution time
+- Provides route insights like IP address, status code, execution time. etc
 
 ## Install
 
@@ -34,8 +29,10 @@ yarn add erel
 ```javascript
 const express = require('express');
 const app = express();
+
 // Import exitLog from erel
 const { exitLog } = require('erel');
+
 // Use your custom logging solution (optional but preferred)
 const customLogger = (data, req, res) => {
   Logger.info(
@@ -43,6 +40,7 @@ const customLogger = (data, req, res) => {
   );
 };
 exitLog.setLogger(customLogger);
+
 // Configure express app to use the middleware
 app.use(exitLog.middleware);
 ```
@@ -52,8 +50,10 @@ app.use(exitLog.middleware);
 ```typescript
 import * as express from 'express';
 const app = express();
+
 // import exitLog and LoggerCallback from erel
 import { exitLog, LoggerCallback } from 'erel';
+
 // Use your custom logging solution (optional but preferred)
 const customLogger: LoggerCallback = (data, req, res) => {
   Logger.info(
@@ -61,6 +61,7 @@ const customLogger: LoggerCallback = (data, req, res) => {
   );
 };
 exitLog.setLogger(customLogger);
+
 // Configure express app to use the middleware
 app.use(exitLog.middleware);
 ```
@@ -76,6 +77,7 @@ It accepts a logger function as argument which implements the `LoggerCallback` i
 
 ```typescript
 // Example
+
 import { exitLog } from 'erel';
 // req and res is also passed to log custom objects, like req.userId
 exitLog.setLogger((data, req, res) => {
@@ -118,13 +120,17 @@ type LoggerCallback = (data: exitData, req?: Request, res?: Response) => void;
 | `responseTime` | `number` | Time taken in millisecond to finish route execution |
 | `method` | `string` | Request method to access the endpoint |
 
-## Author
+#### Need more insights?
 
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+Consider opening a feature request [here](https://github.com/bhumijgupta/erel/issues/new).
+
+## Build with ♡ by
 
 ### Bhumij Gupta
 
-![GitHub followers](https://img.shields.io/github/followers/bhumijgupta?label=Follow&style=social) [![LinkedIn](https://img.shields.io/static/v1.svg?label=connect&message=@bhumijgupta&color=success&logo=linkedin&style=flat&logoColor=white)](https://www.linkedin.com/in/bhumijgupta/) [![Twitter URL](https://img.shields.io/twitter/url?style=social&url=http%3A%2F%2Ftwitter.com%2Fbhumijgupta)](https://twitter.com/bhumijgupta)
+<img src="https://avatars.githubusercontent.com/bhumijgupta?size=200" alt="Bhumij profile picture">
+
+![GitHub followers](https://img.shields.io/github/followers/bhumijgupta?label=Follow&style=social) [![LinkedIn](https://img.shields.io/static/v1.svg?label=connect&message=@bhumijgupta&color=success&logo=linkedin&style=flat&logoColor=white)](https://www.linkedin.com/in/bhumijgupta/) ![Twitter Follow](https://img.shields.io/twitter/follow/bhumijgupta?style=social)
 
 ---
 
