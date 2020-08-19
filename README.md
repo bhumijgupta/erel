@@ -1,5 +1,6 @@
 <div align="center"> 
 <h1>EREL</h1>
+<img src="https://github.com/bhumijgupta/erel/workflows/NPM%20Publish/badge.svg" alt="NPM Publish"> <img alt="npm" src="https://img.shields.io/npm/v/erel"> <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/erel?color=green"> <img alt="NPM" src="https://img.shields.io/npm/l/erel"> <img alt="GitHub stars" src="https://img.shields.io/github/stars/bhumijgupta/erel?style=plastic"><br/>
 Express-route-exit-log (EREL) is a customisable express middleware package to log useful request insights when route execution finishes.
 </div>
 
@@ -22,10 +23,10 @@ npm i erel --save
 yarn add erel
 ```
 
-## Demo screenshot
+## Screenshot
 
-Logging route insights using custom logger and EREL
-![Demo screenshot](./assets/screenshot.png)
+Logging route insights using custom logger and EREL  
+![Demo screenshot](https://github.com/bhumijgupta/erel/raw/master/assets/screenshot.png)
 
 ## Usage
 
@@ -128,6 +129,10 @@ type LoggerCallback = (data: exitData, req?: Request, res?: Response) => void;
 #### Need more insights?
 
 Consider opening a feature request [here](https://github.com/bhumijgupta/erel/issues/new).
+
+### License
+
+<img alt="NPM" src="https://img.shields.io/npm/l/erel">
 
 ## Build with ♡ by
 
