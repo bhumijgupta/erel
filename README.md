@@ -22,6 +22,11 @@ npm i erel --save
 yarn add erel
 ```
 
+## Demo screenshot
+
+Logging route insights using custom logger and EREL
+![Demo screenshot](./assets/screenshot.png)
+
 ## Usage
 
 1. For JavaScript
