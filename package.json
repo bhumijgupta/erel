@@ -1,6 +1,6 @@
 {
   "name": "erel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express-route-exit-log (EREL) is an express middleware package to log useful route info, when route execution is finished",
   "main": "lib/cjs/index.js",
   "types": "lib/cjs/index.d.ts",
