@@ -35,7 +35,10 @@
     "lint": "tslint -p tsconfig.json",
     "build": "rimraf ./lib && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "build:watch": "tsc --watch",
-    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint && npm build",
+    "preversion": "npm run lint",
+    "version": "npm run format",
+    "postversion": "git push && git push --tags",
     "clean": "rimraf ./lib"
   },
   "husky": {
