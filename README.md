@@ -122,7 +122,7 @@ type LoggerCallback = (data: exitData, req?: Request, res?: Response) => void;
 | `timestamp` | `string` | Timestamp when route finished execution |
 | `statusCode` | `number` | Response status code |
 | `route` | `string` | Route accessed |
-| `ip` | `string | undefined` | IP address of the request |
+| `ip` | `string \| undefined` | IP address of the request |
 | `responseTime` | `number` | Time taken in millisecond to finish route execution |
 | `method` | `string` | Request method to access the endpoint |
 
