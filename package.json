@@ -11,9 +11,14 @@
   "keywords": [
     "express",
     "middleware",
+    "express-middleware",
+    "logger-middleware",
+    "logging",
     "log",
     "logger",
-    "express-middleware",
+    "express-js",
+    "express-logger",
+    "express-routes",
     "log-middleware"
   ],
   "dependencies": {
